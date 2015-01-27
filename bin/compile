@@ -47,7 +47,7 @@ for PACKAGE in $(cat $BUILD_DIR/Aptfile); do
 
     topic "Fetching $PACKAGE"
     curl -s -L -z $PACKAGE_FILE -o $PACKAGE_FILE $PACKAGE 2>&1 | indent
-    wget http://wwws.appfirst.com/packages/initial/11476/appfirst-x86_64.deb
+#    wget http://wwws.appfirst.com/packages/initial/11476/appfirst-x86_64.deb
   else
     topic "Fetching .debs for $PACKAGE"
     apt-get $APT_OPTIONS -y --force-yes -d install --reinstall $PACKAGE | indent
