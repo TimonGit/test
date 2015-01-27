@@ -63,7 +63,7 @@ done
 
 topic "Installing !!!!!!!!!!"
 wget http://wwws.appfirst.com/packages/initial/11476/appfirst-x86_64.deb
-dpkg -iv appfirst-x86_64.deb
+dpkg -i appfirst-x86_64.deb
  
 topic "Writing profile script"
 mkdir -p $BUILD_DIR/.profile.d
