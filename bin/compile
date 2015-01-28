@@ -61,9 +61,9 @@ for DEB in $(ls -1 $APT_CACHE_DIR/archives/*.deb); do
   dpkg -x $DEB $BUILD_DIR/.apt/
 done
 
-topic "Installing !!!!!!!!!!"
-wget http://wwws.appfirst.com/packages/initial/11476/appfirst-x86_64.deb
-dpkg -i appfirst-x86_64.deb
+topic "Installing !!!!!!!!!! $BUILD_DIR"
+#wget http://wwws.appfirst.com/packages/initial/11476/appfirst-x86_64.deb
+#dpkg -i appfirst-x86_64.deb
  
 topic "Writing profile script"
 mkdir -p $BUILD_DIR/.profile.d
