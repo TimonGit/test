@@ -61,7 +61,7 @@ for DEB in $(ls -1 $APT_CACHE_DIR/archives/*.deb); do
   dpkg -x $DEB $BUILD_DIR/.apt/
 done
 
-sed -i "/Tenant/c\   Tenant 11476" $HOME/.apt/etc/AppFirst
+sed -i "/Tenant/c\   Tenant 11476" $HOME/.apt/etc/AppFirst.conf
 
 topic "Writing profile script"
 mkdir -p $BUILD_DIR/.profile.d
