@@ -74,8 +74,7 @@ export CPATH="\$INCLUDE_PATH"
 export CPPPATH="\$INCLUDE_PATH"
 export PKG_CONFIG_PATH="\$HOME/.apt/usr/lib/x86_64-linux-gnu/pkgconfig:\$HOME/.apt/usr/lib/i386-linux-gnu/pkgconfig:\$HOME/.apt/usr/lib/pkgconfig:\$PKG_CONFIG_PATH"
 mkdir -p $HOME/.apt/var
-mkdir -p /tmp/opt/data
-export LD_PRELOAD="\$HOME/.apt/usr/share/appfirst/libwrap.so.1.0.1"
+mkdir -p $HOME/.apt/opt/data
 sed -i "/Tenant/c\   Tenant 11476\nDataKeep 10" $HOME/.apt/etc/AppFirst.conf
 EOF
 
