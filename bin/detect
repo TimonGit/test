@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 # bin/detect <build-dir>
 
-echo "Apt" && exit 0
+echo "AppFirst" && exit 0
