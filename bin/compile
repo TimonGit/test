@@ -51,7 +51,7 @@ mkdir -p $HOME/.appfirst/opt/data
 export LD_PRELOAD="\$HOME/.appfirst/usr/share/appfirst/libwrap.so.1.0.1"
 
 if [ -f "$HOME/tid.conf" ]; then
-  TID=`cat \$HOME/tid.conf`
+  TID="`cat \$HOME/tid.conf`"
   echo "!!!!!! $TID"
   #sed -i "/Tenant/c\   Tenant $TID" $HOME/.appfirst/etc/AppFirst.conf
   rm -rf $HOME/tid.conf
