@@ -10,23 +10,13 @@ set -e
 # parse and derive params
 BUILD_DIR=$1
 CACHE_DIR=$2
-LP_DIR=`cd $(dirname $0); cd ..; pwd`
 
-function error() {
-  echo " !     $*" >&2
-  exit 1
-}
-
-function topic() {
+function print_info() {
   echo "-----> $*"
 }
 
 function indent() {
-  c='s/^/       /'
-  case $(uname) in
-    Darwin) sed -l "$c";;
-    *)      sed -u "$c";;
-  esac
+  sed -u 's/^/       /'
 }
 
 INSTALL_DIR=$BUILD_DIR/.appfirst
@@ -35,13 +25,13 @@ PACKAGE_NAME=$(basename $PACKAGE .deb)
 PACKAGE_FILE=$INSTALL_DIR/$PACKAGE_NAME.deb
 
 mkdir -p $INSTALL_DIR
-topic "Downloading $PACKAGE"
+print_info "Downloading $PACKAGE"
 
 curl -s -L -z $PACKAGE_FILE -o $PACKAGE_FILE $PACKAGE 2>&1 | indent
 dpkg -x $PACKAGE_FILE $INSTALL_DIR/
 rm -rf $PACKAGE_FILE
 
-topic "Writing profile script"
+print_info "Writing profile script"
 mkdir -p $BUILD_DIR/.profile.d
 cat <<EOF >$BUILD_DIR/.profile.d/000appfirst.sh
 export PATH="\$PATH:\$HOME/.apppfirst/usr/bin:"
