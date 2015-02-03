@@ -44,18 +44,13 @@ dpkg -x $PACKAGE_FILE $INSTALL_DIR/
 
 topic "Writing profile script"
 mkdir -p $BUILD_DIR/.profile.d
-cat <<EOF >$BUILD_DIR/.profile.d/000_apt.sh
-export PATH="\$HOME/.apt/usr/bin:\$PATH"
-export LD_LIBRARY_PATH="\$HOME/.apt/usr/lib/x86_64-linux-gnu:\$HOME/.apt/usr/lib/i386-linux-gnu:\$HOME/.apt/usr/lib:\$HOME/.apt/usr/share/appfirst:\$LD_LIBRARY_PATH"
-export LIBRARY_PATH="\$HOME/.apt/usr/lib/x86_64-linux-gnu:\$HOME/.apt/usr/lib/i386-linux-gnu:\$HOME/.apt/usr/lib:\$LIBRARY_PATH"
-export INCLUDE_PATH="\$HOME/.apt/usr/include:\$INCLUDE_PATH"
-export CPATH="\$INCLUDE_PATH"
-export CPPPATH="\$INCLUDE_PATH"
-export PKG_CONFIG_PATH="\$HOME/.apt/usr/lib/x86_64-linux-gnu/pkgconfig:\$HOME/.apt/usr/lib/i386-linux-gnu/pkgconfig:\$HOME/.apt/usr/lib/pkgconfig:\$PKG_CONFIG_PATH"
-mkdir -p $HOME/.apt/var
-mkdir -p $HOME/.apt/opt/data
-export LD_PRELOAD="\$HOME/.apt/usr/share/appfirst/libwrap.so.1.0.1"
-sed -i "/Tenant/c\   Tenant 11476" $HOME/.apt/etc/AppFirst.conf
+cat <<EOF >$BUILD_DIR/.profile.d/000appfirst.sh
+export PATH="\$HOME/.apppfirst/usr/bin:\$PATH"
+export LD_LIBRARY_PATH="\$HOME/.appfirst/usr/share/appfirst:\$LD_LIBRARY_PATH"
+mkdir -p $HOME/.appfirst/var
+mkdir -p $HOME/.appfirst/opt/data
+export LD_PRELOAD="\$HOME/.appfirst/usr/share/appfirst/libwrap.so.1.0.1"
+sed -i "/Tenant/c\   Tenant 11476" $HOME/.appfirst/etc/AppFirst.conf
 EOF
 
 #export PATH="$BUILD_DIR/.apt/usr/bin:$PATH"
