@@ -44,12 +44,19 @@ rm -rf $PACKAGE_FILE
 topic "Writing profile script"
 mkdir -p $BUILD_DIR/.profile.d
 cat <<EOF >$BUILD_DIR/.profile.d/000appfirst.sh
-export PATH="\$HOME/.apppfirst/usr/bin:\$PATH"
-export LD_LIBRARY_PATH="\$HOME/.appfirst/usr/share/appfirst:\$LD_LIBRARY_PATH"
+export PATH="\$PATH:\$HOME/.apppfirst/usr/bin:"
+export LD_LIBRARY_PATH="\$LD_LIBRARY_PATH:\$HOME/.appfirst/usr/share/appfirst"
 mkdir -p $HOME/.appfirst/var
 mkdir -p $HOME/.appfirst/opt/data
 export LD_PRELOAD="\$HOME/.appfirst/usr/share/appfirst/libwrap.so.1.0.1"
-sed -i "/Tenant/c\   Tenant 11476" $HOME/.appfirst/etc/AppFirst.conf
+
+if [ -f "$HOME\tid.conf" ]
+then
+  TID=`cat $HOME\tid.conf`
+  sed -i "/Tenant/c\   Tenant $TID" $HOME/.appfirst/etc/AppFirst.conf
+  rm -rf $HOME\tid.conf
+fi
+
 $HOME/.appfirst/usr/bin/collector --piddir="\$HOME/.appfirst/var" --datadir="\$HOME/.appfirst/opt/data"
 EOF
 
