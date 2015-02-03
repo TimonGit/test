@@ -16,7 +16,11 @@ function print_info() {
 }
 
 function indent() {
-  sed -u 's/^/       /'
+  c='s/^/       /'
+  case $(uname) in
+    Darwin) sed -l "$c";;
+    *)      sed -u "$c";;
+  esac
 }
 
 INSTALL_DIR=$BUILD_DIR/.appfirst
