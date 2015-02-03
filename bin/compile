@@ -16,7 +16,7 @@ function error() {
   exit 1
 }
 
-function print_info() {
+function topic() {
   echo "-----> $*"
 }
 
@@ -34,13 +34,13 @@ PACKAGE_NAME=$(basename $PACKAGE .deb)
 PACKAGE_FILE=$INSTALL_DIR/$PACKAGE_NAME.deb
 
 mkdir -p $INSTALL_DIR
-print_info "Downloading $PACKAGE"
+topic "Downloading $PACKAGE"
 
 curl -s -L -z $PACKAGE_FILE -o $PACKAGE_FILE $PACKAGE 2>&1 | indent
 dpkg -x $PACKAGE_FILE $INSTALL_DIR/
 rm -rf $PACKAGE_FILE
 
-print_info "Writing profile script"
+topic "Writing profile script"
 mkdir -p $BUILD_DIR/.profile.d
 cat <<EOF >$BUILD_DIR/.profile.d/000appfirst.sh
 export PATH="\$PATH:\$HOME/.apppfirst/usr/bin:"
