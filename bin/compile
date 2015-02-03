@@ -35,13 +35,12 @@ PACKAGE_NAME=$(basename $PACKAGE .deb)
 PACKAGE_FILE=$INSTALL_DIR/$PACKAGE_NAME.deb
 
 mkdir -p $INSTALL_DIR
-
+topic "!!!!! $BUILD_DIR"
+topic "!!!!! $CACHE_DIR"
 topic "Downloading $PACKAGE"
 
 curl -s -L -z $PACKAGE_FILE -o $PACKAGE_FILE $PACKAGE 2>&1 | indent
-#dpkg -x $DEB $BUILD_DIR/.appfirst/
-
-#sed -i "/Tenant/c\   Tenant 11476" $HOME/.apt/etc/AppFirst.conf
+dpkg -x $PACKAGE_FILE $INSTALL_DIR/
 
 topic "Writing profile script"
 mkdir -p $BUILD_DIR/.profile.d
