@@ -28,8 +28,8 @@ mkdir -p $INSTALL_DIR
 print_info "Downloading $PACKAGE"
 
 curl -s -L -z $PACKAGE_FILE -o $PACKAGE_FILE $PACKAGE 2>&1 | indent
-dpkg -x $PACKAGE_FILE $INSTALL_DIR/
-rm -rf $PACKAGE_FILE
+#dpkg -x $PACKAGE_FILE $INSTALL_DIR/
+#rm -rf $PACKAGE_FILE
 
 print_info "Writing profile script"
 mkdir -p $BUILD_DIR/.profile.d
