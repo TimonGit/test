@@ -42,7 +42,9 @@ print_info "!!!!!!"
 ls -la $INSTALL_DIR
 print_info "!!!!!!"
 print_info "Writing profile script"
-mkdir -p $HOME/.profile.d
+
+mkdir -pf $HOME/.profile.d
+
 cat <<EOF >$HOME/.profile.d/000appfirst.sh
 export PATH="\$PATH:\$HOME/.apppfirst/usr/bin:"
 export LD_LIBRARY_PATH="\$LD_LIBRARY_PATH:\$HOME/.appfirst/usr/share/appfirst"
