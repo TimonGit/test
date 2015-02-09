@@ -37,8 +37,9 @@ print_info "!!!!!!!"
 ls -la
 print_info "!!!!!!!"
 ls -la /tmp/buildpacks/test
+print_info "!!!!!!!3333"
+ls -la $HOMR
 print_info "!!!!!!!"
-
 print_info "Writing profile script"
 mkdir -p $BUILD_DIR/.profile.d
 cat <<EOF >$BUILD_DIR/.profile.d/000appfirst.sh
