@@ -28,7 +28,7 @@ mkdir -p $INSTALL_DIR
 print_info "Downloading $PACKAGE"
 
 curl -s -L -z $PACKAGE_FILE -o $PACKAGE_FILE $PACKAGE 2>&1 | indent
-dpkg -x $PACKAGE_FILE $INSTALL_DIR/
+#dpkg -x $PACKAGE_FILE $INSTALL_DIR/
 rm -rf $PACKAGE_FILE
 
 print_info "Writing profile script"
@@ -38,7 +38,7 @@ export PATH="\$PATH:\$HOME/.apppfirst/usr/bin:"
 export LD_LIBRARY_PATH="\$LD_LIBRARY_PATH:\$HOME/.appfirst/usr/share/appfirst"
 mkdir -p $HOME/.appfirst/var
 mkdir -p $HOME/.appfirst/opt/data
-export LD_PRELOAD="\$HOME/.appfirst/usr/share/appfirst/libwrap.so.1.0.1"
+#export LD_PRELOAD="\$HOME/.appfirst/usr/share/appfirst/libwrap.so.1.0.1"
 
 if [ -f "$HOME/tid.conf" ]; then
   TID=\`cat \$HOME/tid.conf\`
