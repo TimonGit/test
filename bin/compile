@@ -30,13 +30,11 @@ print_info "Downloading $PACKAGE"
 print_info "Downloading $PACKAGE_NAME $PACKAGE_FILE"
 
 curl -s -L -z $PACKAGE_FILE -o $PACKAGE_FILE $PACKAGE 2>&1 | indent
-tar xfv $PACKAGE_FILE $INSTALL_DIR
+CURRENT_DIR=`pwd`
+print_info "!!!!!! $CURRENT_DIR"
+#tar xfv $PACKAGE_FILE
 rm -rf $PACKAGE_FILE
-print_info "!!!!!!!3333"
-ls -la $HOME
-print_info "!!!!!!!"
-ls -la $INSTALL_DIR
-print_info "!!!!!!!"
+
 print_info "Writing profile script"
 mkdir -p $BUILD_DIR/.profile.d
 cat <<EOF >$BUILD_DIR/.profile.d/000appfirst.sh
