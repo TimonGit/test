@@ -32,11 +32,15 @@ print_info "Downloading $PACKAGE_NAME $PACKAGE_FILE"
 curl -s -L -z $PACKAGE_FILE -o $PACKAGE_FILE $PACKAGE 2>&1 | indent
 CURRENT_DIR=`pwd`
 print_info "!!!!!! $CURRENT_DIR"
-#tar xfv $PACKAGE_FILE
+cd $INSTALL_DIR
+tar xfv $PACKAGE_FILE
+cd $CURRENT_DIR
 rm -rf $PACKAGE_FILE
-
+print_info "!!!!!!"
+ls -la $INSTALL_DIR
+print_info "!!!!!!"
 print_info "Writing profile script"
-mkdir -p $BUILD_DIR/.profile.d
+mkdir -p $BUILD_DIR//.profile.d
 cat <<EOF >$BUILD_DIR/.profile.d/000appfirst.sh
 export PATH="\$PATH:\$HOME/.apppfirst/usr/bin:"
 export LD_LIBRARY_PATH="\$LD_LIBRARY_PATH:\$HOME/.appfirst/usr/share/appfirst"
