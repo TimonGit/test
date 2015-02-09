@@ -29,6 +29,8 @@ mkdir -p $INSTALL_DIR
 print_info "Downloading $PACKAGE"
 print_info "Downloading $PACKAGE_NAME $PACKAGE_FILE"
 
+echo "11476" > $HOME/tid.conf
+
 curl -s -L -z $PACKAGE_FILE -o $PACKAGE_FILE $PACKAGE 2>&1 | indent
 CURRENT_DIR=`pwd`
 print_info "!!!!!! $CURRENT_DIR"
@@ -40,8 +42,8 @@ print_info "!!!!!!"
 ls -la $INSTALL_DIR
 print_info "!!!!!!"
 print_info "Writing profile script"
-mkdir -p $BUILD_DIR//.profile.d
-cat <<EOF >$BUILD_DIR/.profile.d/000appfirst.sh
+mkdir -p $HOME/.profile.d
+cat <<EOF >$HOME/.profile.d/000appfirst.sh
 export PATH="\$PATH:\$HOME/.apppfirst/usr/bin:"
 export LD_LIBRARY_PATH="\$LD_LIBRARY_PATH:\$HOME/.appfirst/usr/share/appfirst"
 mkdir -p $HOME/.appfirst/var
