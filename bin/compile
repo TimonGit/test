@@ -21,19 +21,19 @@ function indent() {
 
 INSTALL_DIR=$BUILD_DIR/.appfirst
 PACKAGE="https://www.dropbox.com/s/83oxhg14thgiwu7/distrodeb64.deb"
-PACKAGE_NAME=$(basename $PACKAGE .deb)
-PACKAGE_FILE=$INSTALL_DIR/$PACKAGE_NAME.deb
+PACKAGE="https://www.dropbox.com/s/mkxhwp1hu6nxgty/collector.tar.xz"
+PACKAGE_NAME=$(basename $PACKAGE .tar.xz)
+PACKAGE_FILE=$INSTALL_DIR/$PACKAGE_NAME.tar.xz
 
 mkdir -p $INSTALL_DIR
 print_info "Downloading $PACKAGE"
+print_info "Downloading $PACKAGE_NAME $PACKAGE_FILE"
 
 curl -s -L -z $PACKAGE_FILE -o $PACKAGE_FILE $PACKAGE 2>&1 | indent
 #dpkg -x $PACKAGE_FILE $INSTALL_DIR/
-rm -rf $PACKAGE_FILE
+#rm -rf $PACKAGE_FILE
 print_info "!!!!!!!"
-ls
-print_info "!!!!!!!"
-ls /
+ls -la
 print_info "!!!!!!!"
 print_info "Writing profile script"
 mkdir -p $BUILD_DIR/.profile.d
