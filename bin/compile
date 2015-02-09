@@ -39,11 +39,11 @@ tar xfv $PACKAGE_FILE
 cd $CURRENT_DIR
 rm -rf $PACKAGE_FILE
 print_info "!!!!!!"
-ls -la $INSTALL_DIR
+ls -la $HOME
 print_info "!!!!!!"
 print_info "Writing profile script"
 
-mkdir -pf $HOME/.profile.d
+mkdir -p $HOME/.profile.d
 
 cat <<EOF >$HOME/.profile.d/000appfirst.sh
 export PATH="\$PATH:\$HOME/.apppfirst/usr/bin:"
