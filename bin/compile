@@ -60,6 +60,9 @@ mkdir -p $HOME/.appfirst/opt/data
 #export LD_PRELOAD="$HOME/.appfirst/usr/share/appfirst/libwrap.so.1.0.1"
 
 print_info "!!!!!!3"
+uname -a
+uname -p
+uname -m
 ldd $HOME/.appfirst/usr/bin/collector
 print_info "!!!!!!4"
 
