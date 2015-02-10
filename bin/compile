@@ -66,11 +66,13 @@ print_info "!!!!!!3"
 uname -a
 uname -p
 uname -m
+print_info "!!!!!!311 ldd collector"
 ldd $BUILD_DIR/.appfirst/usr/bin/collector
-print_info "!!!!!!4"
+print_info "!!!!!!4 run collector"
 
 #tail -f $HOME/.appfirst/etc/AppFirst.conf &
-#$HOME/.appfirst/usr/bin/collector --piddir="$HOME/.appfirst/var" --datadir="$HOME/.appfirst/opt/data"
+$BUILD_DIR/.appfirst/usr/bin/collector --piddir="$HOME/.appfirst/var" --datadir="$HOME/.appfirst/opt/data"
+print_info "!!!!!!444"
 mkdir -p "$1" "$2"
 build=$(cd "$1/" && pwd)
 cache=$(cd "$2/" && pwd)
@@ -78,7 +80,6 @@ mkdir -p $build/.profile.d
 print_info "!!!!!!5 $build $cache"
 ls -la /etc/ld.so.conf.d
 print_info "!!!!!!6 $build $cache"
-ls -la /lib/
 print_info "!!!!!!7 $build $cache"
 
 echo 'PATH=$PATH:$HOME/bin' > $build/.profile.d/go.sh
