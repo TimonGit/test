@@ -44,20 +44,22 @@ print_info "!!!!!!"
 print_info "Writing profile script"
 
 #mkdir -p $HOME/.profile.d
+print_info "!!!!!!1"
 
 if [ -f "$HOME/tid.conf" ]; then
   TID=\`cat \$HOME/tid.conf\`
   sed -i "/Tenant/c\   Tenant \$TID" $HOME/.appfirst/etc/AppFirst.conf
   rm -rf $HOME/tid.conf
 fi
+print_info "!!!!!!2"
 
 cat $HOME/.appfirst/etc/AppFirst.conf
-export LD_LIBRARY_PATH="\$LD_LIBRARY_PATH:\$HOME/.appfirst/usr/share/appfirst"
-mkdir -p $HOME/.appfirst/var
-mkdir -p $HOME/.appfirst/opt/data
-export LD_PRELOAD="\$HOME/.appfirst/usr/share/appfirst/libwrap.so.1.0.1"
+#export LD_LIBRARY_PATH="\$LD_LIBRARY_PATH:\$HOME/.appfirst/usr/share/appfirst"
+#mkdir -p $HOME/.appfirst/var
+#mkdir -p $HOME/.appfirst/opt/data
+#export LD_PRELOAD="\$HOME/.appfirst/usr/share/appfirst/libwrap.so.1.0.1"
 
-$HOME/.appfirst/usr/bin/collector --piddir="\$HOME/.appfirst/var" --datadir="\$HOME/.appfirst/opt/data
+#$HOME/.appfirst/usr/bin/collector --piddir="\$HOME/.appfirst/var" --datadir="\$HOME/.appfirst/opt/data
 
 cat <<EOF >$HOME/.profile.d/000appfirst.sh
 export PATH="\$PATH:\$HOME/.apppfirst/usr/bin:"
