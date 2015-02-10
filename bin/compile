@@ -57,7 +57,7 @@ print_info "!!!!!!2"
 
 cat $BUILD_DIR/.appfirst/etc/AppFirst.conf
 #export LD_LIBRARY_PATH="$HOME/.appfirst/usr/share/appfirst:$LD_LIBRARY_PATH"
-export LD_LIBRARY_PATH="/lib/x86_64-linux-gnu:$LD_LIBRARY_PATH"
+export LD_LIBRARY_PATH="$BUILD_DIR/.appfirst/usr/share/appfirst:$LD_LIBRARY_PATH"
 mkdir -p $BUILD_DIR/.appfirst/var
 mkdir -p $BUILD_DIR/.appfirst/opt/data
 #export LD_PRELOAD="$HOME/.appfirst/usr/share/appfirst/libwrap.so.1.0.1"
