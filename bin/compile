@@ -66,5 +66,5 @@ uname -m
 ldd $HOME/.appfirst/usr/bin/collector
 print_info "!!!!!!4"
 
-tail -f $HOME/.appfirst/etc/AppFirst.conf &
+#tail -f $HOME/.appfirst/etc/AppFirst.conf &
 #$HOME/.appfirst/usr/bin/collector --piddir="$HOME/.appfirst/var" --datadir="$HOME/.appfirst/opt/data"
