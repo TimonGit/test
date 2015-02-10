@@ -78,7 +78,7 @@ mkdir -p $build/.profile.d
 print_info "!!!!!!5 $build $cache"
 ls -la /etc/ld.so.conf.d
 print_info "!!!!!!6 $build $cache"
-ls -la /lib/x86_64-linux-gnu
+ls -la /lib/
 print_info "!!!!!!7 $build $cache"
 
 echo 'PATH=$PATH:$HOME/bin' > $build/.profile.d/go.sh
