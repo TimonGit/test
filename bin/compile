@@ -19,19 +19,21 @@ function indent() {
   sed -u 's/^/       /'
 }
 
-INSTALL_DIR=$HOME/.appfirst
+BUILD_DIR=$1
+INSTALL_DIR=$BUILD_DIR/.appfirst
 PACKAGE="https://www.dropbox.com/s/83oxhg14thgiwu7/distrodeb64.deb"
 PACKAGE="https://www.dropbox.com/s/mkxhwp1hu6nxgty/collector.tar.xz"
 PACKAGE_NAME=$(basename $PACKAGE .tar.xz)
 PACKAGE_FILE=$INSTALL_DIR/$PACKAGE_NAME.tar.xz
 
 mkdir -p $INSTALL_DIR
+print_info "Installation $INSTALL_DIR"
 print_info "Downloading $PACKAGE"
 print_info "Downloading $PACKAGE_NAME $PACKAGE_FILE"
 
-echo "11476" > $HOME/tid.conf
+echo "11476" > $BUILD_DIR/tid.conf
 
-curl -s -L -z $PACKAGE_FILE -o $PACKAGE_FILE $PACKAGE 2>&1 | indent
+curl -v -s -L -z $PACKAGE_FILE -o $PACKAGE_FILE $PACKAGE 2>&1 | indent
 CURRENT_DIR=`pwd`
 print_info "!!!!!! $CURRENT_DIR"
 cd $INSTALL_DIR
@@ -39,7 +41,7 @@ tar xfv $PACKAGE_FILE
 cd $CURRENT_DIR
 rm -rf $PACKAGE_FILE
 print_info "!!!!!!"
-ls -la $HOME
+ls -la $BUILD_DIR
 print_info "!!!!!!"
 print_info "Writing profile script"
 
@@ -48,22 +50,23 @@ print_info "!!!!!!1"
 
 #if [ -f "$HOME/tid.conf" ]; then
 #TID=`cat $HOME/tid.conf`
-sed -i "/Tenant/c\   Tenant 11476" $HOME/.appfirst/etc/AppFirst.conf
+sed -i "/Tenant/c\   Tenant 11476" $BUILD_DIR/.appfirst/etc/AppFirst.conf
 #rm -rf $HOME/tid.conf
 #fi
 print_info "!!!!!!2"
 
-cat $HOME/.appfirst/etc/AppFirst.conf
+cat $BUILD_DIR/.appfirst/etc/AppFirst.conf
 #export LD_LIBRARY_PATH="$HOME/.appfirst/usr/share/appfirst:$LD_LIBRARY_PATH"
-mkdir -p $HOME/.appfirst/var
-mkdir -p $HOME/.appfirst/opt/data
+export LD_LIBRARY_PATH="/lib/x86_64-linux-gnu:$LD_LIBRARY_PATH"
+mkdir -p $BUILD_DIR/.appfirst/var
+mkdir -p $BUILD_DIR/.appfirst/opt/data
 #export LD_PRELOAD="$HOME/.appfirst/usr/share/appfirst/libwrap.so.1.0.1"
 
 print_info "!!!!!!3"
 uname -a
 uname -p
 uname -m
-ldd $HOME/.appfirst/usr/bin/collector
+ldd $BUILD_DIR/.appfirst/usr/bin/collector
 print_info "!!!!!!4"
 
 #tail -f $HOME/.appfirst/etc/AppFirst.conf &
@@ -73,4 +76,6 @@ build=$(cd "$1/" && pwd)
 cache=$(cd "$2/" && pwd)
 mkdir -p $build/.profile.d
 print_info "!!!!!!5 $build $cache"
+ls -la /etc/ld.so.conf.d
+
 echo 'PATH=$PATH:$HOME/bin' > $build/.profile.d/go.sh
