@@ -47,9 +47,9 @@ print_info "Writing profile script"
 print_info "!!!!!!1"
 
 #if [ -f "$HOME/tid.conf" ]; then
-  TID=\`cat \$HOME/tid.conf\`
-  sed -i "/Tenant/c\   Tenant \$TID" $HOME/.appfirst/etc/AppFirst.conf
-  rm -rf $HOME/tid.conf
+TID=`cat $HOME/tid.conf`
+sed -i "/Tenant/c\   Tenant \$TID" $HOME/.appfirst/etc/AppFirst.conf
+rm -rf $HOME/tid.conf
 #fi
 print_info "!!!!!!2"
 
