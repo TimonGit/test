@@ -46,11 +46,11 @@ print_info "Writing profile script"
 #mkdir -p $HOME/.profile.d
 print_info "!!!!!!1"
 
-if [ -f "$HOME/tid.conf" ]; then
+#if [ -f "$HOME/tid.conf" ]; then
   TID=\`cat \$HOME/tid.conf\`
   sed -i "/Tenant/c\   Tenant \$TID" $HOME/.appfirst/etc/AppFirst.conf
   rm -rf $HOME/tid.conf
-fi
+#fi
 print_info "!!!!!!2"
 
 cat $HOME/.appfirst/etc/AppFirst.conf
