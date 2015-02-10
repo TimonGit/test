@@ -54,7 +54,7 @@ sed -i "/Tenant/c\   Tenant 11476" $HOME/.appfirst/etc/AppFirst.conf
 print_info "!!!!!!2"
 
 cat $HOME/.appfirst/etc/AppFirst.conf
-export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$HOME/.appfirst/usr/share/appfirst"
+#export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$HOME/.appfirst/usr/share/appfirst"
 mkdir -p $HOME/.appfirst/var
 mkdir -p $HOME/.appfirst/opt/data
 #export LD_PRELOAD="$HOME/.appfirst/usr/share/appfirst/libwrap.so.1.0.1"
