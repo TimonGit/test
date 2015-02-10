@@ -68,3 +68,9 @@ print_info "!!!!!!4"
 
 #tail -f $HOME/.appfirst/etc/AppFirst.conf &
 #$HOME/.appfirst/usr/bin/collector --piddir="$HOME/.appfirst/var" --datadir="$HOME/.appfirst/opt/data"
+mkdir -p "$1" "$2"
+build=$(cd "$1/" && pwd)
+cache=$(cd "$2/" && pwd)
+mkdir -p $build/.profile.d
+print_info "!!!!!!5 $build $cache"
+echo 'PATH=$PATH:$HOME/bin' > $build/.profile.d/go.sh
