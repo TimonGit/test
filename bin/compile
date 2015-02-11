@@ -51,3 +51,6 @@
 #mkdir -p $BUILD_DIR/.profile.d
 #echo 'PATH=$PATH:$HOME/bin' > $BUILD_DIR/.profile.d/go.sh
 #echo '/bin/bash' > $BUILD_DIR/.profile.d/go.sh
+ls -la $HOME
+
+ls -la $1
