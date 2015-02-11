@@ -1,5 +1,7 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
-cat << EOF
----
-EOF
+echo "--- {}"
+
+#cat << EOF
+#---
+#EOF
