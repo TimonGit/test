@@ -71,7 +71,7 @@ ldd $HOME/.appfirst/usr/bin/collector
 print_info "!!!!!!4 run collector"
 
 #tail -f $HOME/.appfirst/etc/AppFirst.conf &
-$HOME/.appfirst/usr/bin/collector --piddir="$HOME/.appfirst/var" --datadir="$HOME/.appfirst/opt/data"
+#$HOME/.appfirst/usr/bin/collector --piddir="$HOME/.appfirst/var" --datadir="$HOME/.appfirst/opt/data"
 print_info "!!!!!!444"
 mkdir -p "$1" "$2"
 build=$(cd "$1/" && pwd)
