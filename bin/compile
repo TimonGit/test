@@ -51,10 +51,11 @@
 #mkdir -p $BUILD_DIR/.profile.d
 #echo 'PATH=$PATH:$HOME/bin' > $BUILD_DIR/.profile.d/go.sh
 #echo '' > $BUILD_DIR/.profile.d/go.sh
-echo "echo Hello!" > $HOME/start1.sh
-echo "command: ./start1.sh" > Procfile
+echo "echo Hello1!" > $HOME/start1.sh
+echo "command: ./start1.sh" > $HOME/Procfile
 chmod 0777 $HOME/start1.sh
 ls -la $HOME
-echo "echo Hello!" > $1/start2.sh
+echo "echo Hello2!" > $1/start2.sh
+echo "command: ./start2.sh" > $1/Procfile
 chmod 0777 $1/start2.sh
 ls -la $1
