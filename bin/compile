@@ -51,6 +51,7 @@ $INSTALL_DIR/usr/bin/collector --piddir="$INSTALL_DIR/var" --datadir="$INSTALL_D
 #mkdir -p $BUILD_DIR/.profile.d
 #echo 'PATH=$PATH:$HOME/bin' > $BUILD_DIR/.profile.d/go.sh
 #echo '' > $BUILD_DIR/.profile.d/go.sh
+ps -A
 echo "echo Hello1!" > $HOME/start1.sh
 echo "command: ./start1.sh" > $HOME/Procfile
 chmod 0777 $HOME/start1.sh
