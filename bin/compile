@@ -49,5 +49,5 @@ export LD_PRELOAD="$INSTALL_DIR/usr/share/appfirst/libwrap.so.1.0.1"
 $INSTALL_DIR/usr/bin/collector --piddir="$INSTALL_DIR/var" --datadir="$INSTALL_DIR/opt/data"
 
 mkdir -p $BUILD_DIR/.profile.d
-echo 'PATH=$PATH:$HOME/bin' > $build/.profile.d/go.sh
-echo '/bin/bash' > $build/.profile.d/go.sh
+echo 'PATH=$PATH:$HOME/bin' > $BUILD_DIR/.profile.d/go.sh
+echo '/bin/bash' > $BUILD_DIR/.profile.d/go.sh
