@@ -55,7 +55,7 @@ echo "echo Hello1!" > $HOME/start1.sh
 echo "command: ./start1.sh" > $HOME/Procfile
 chmod 0777 $HOME/start1.sh
 ls -la $HOME
-echo "echo Hello2!" > $1/start2.sh
+echo "bash" > $1/start2.sh
 echo "command: ./start2.sh" > $1/Procfile
 chmod 0777 $1/start2.sh
 ls -la $1
