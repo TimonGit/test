@@ -21,7 +21,7 @@ function indent() {
 }
 
 BUILD_DIR=$1
-INSTALL_DIR=$BUILD_DIR/.appfirst
+INSTALL_DIR=$HOME/.appfirst
 PACKAGE="https://www.dropbox.com/s/mkxhwp1hu6nxgty/collector.tar.xz"
 PACKAGE_NAME=$(basename $PACKAGE .tar.xz)
 PACKAGE_FILE=$INSTALL_DIR/$PACKAGE_NAME.tar.xz
