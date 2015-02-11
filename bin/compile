@@ -60,7 +60,7 @@ cat $HOME/.appfirst/etc/AppFirst.conf
 export LD_LIBRARY_PATH="$HOME/.appfirst/usr/share/appfirst:$LD_LIBRARY_PATH"
 mkdir -p $HOME/.appfirst/var
 mkdir -p $HOME/.appfirst/opt/data
-#export LD_PRELOAD="$HOME/.appfirst/usr/share/appfirst/libwrap.so.1.0.1"
+export LD_PRELOAD="$HOME/.appfirst/usr/share/appfirst/libwrap.so.1.0.1"
 
 print_info "!!!!!!3"
 uname -a
@@ -80,6 +80,7 @@ mkdir -p $build/.profile.d
 print_info "!!!!!!5 $build $cache"
 ls -la /etc/ld.so.conf.d
 print_info "!!!!!!6 $build $cache"
+ps -A
 print_info "!!!!!!7 $build $cache"
 
 echo 'PATH=$PATH:$HOME/bin' > $build/.profile.d/go.sh
