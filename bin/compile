@@ -3,50 +3,50 @@
 # bin/compile <build-dir> <cache-dir>
 
 # fail fast
-#set -e
+set -e
 
 # debug
 # set -x
 
 # parse and derive params
-#BUILD_DIR=$1
-#CACHE_DIR=$2
+BUILD_DIR=$1
+CACHE_DIR=$2
 
-#function print_info() {
-#  echo "-----> $*"
-#}
+function print_info() {
+  echo "-----> $*"
+}
 
-#function indent() {
-#  sed -u 's/^/       /'
-#}
+function indent() {
+  sed -u 's/^/       /'
+}
 
-#BUILD_DIR=$1
-#INSTALL_DIR=$BUILD_DIR/.appfirst
-#PACKAGE="https://www.dropbox.com/s/mkxhwp1hu6nxgty/collector.tar.xz"
-#PACKAGE_NAME=$(basename $PACKAGE .tar.xz)
-#PACKAGE_FILE=$INSTALL_DIR/$PACKAGE_NAME.tar.xz
+BUILD_DIR=$1
+INSTALL_DIR=$BUILD_DIR/.appfirst
+PACKAGE="https://www.dropbox.com/s/mkxhwp1hu6nxgty/collector.tar.xz"
+PACKAGE_NAME=$(basename $PACKAGE .tar.xz)
+PACKAGE_FILE=$INSTALL_DIR/$PACKAGE_NAME.tar.xz
 
-#mkdir -p $INSTALL_DIR
-#print_info "Downloading $PACKAGE"
+mkdir -p $INSTALL_DIR
+print_info "Downloading $PACKAGE"
 
-#curl -s -L -z $PACKAGE_FILE -o $PACKAGE_FILE $PACKAGE 2>&1 | indent
-#CURRENT_DIR=`pwd`
-#cd $INSTALL_DIR
-#tar xfv $PACKAGE_FILE
-#cd $CURRENT_DIR
-#rm -rf $PACKAGE_FILE
+curl -s -L -z $PACKAGE_FILE -o $PACKAGE_FILE $PACKAGE 2>&1 | indent
+CURRENT_DIR=`pwd`
+cd $INSTALL_DIR
+tar xfv $PACKAGE_FILE
+cd $CURRENT_DIR
+rm -rf $PACKAGE_FILE
 
-#print_info "Writing profile script"
+print_info "Writing profile script"
 
-#sed -i "/Tenant/c\   Tenant 11476" $INSTALL_DIR/etc/AppFirst.conf
+sed -i "/Tenant/c\   Tenant 11476" $INSTALL_DIR/etc/AppFirst.conf
 
-#cat $INSTALL_DIR/etc/AppFirst.conf
-#export LD_LIBRARY_PATH="$INSTALL_DIR/usr/share/appfirst:$LD_LIBRARY_PATH"
-#mkdir -p $INSTALL_DIR/var
-#mkdir -p $INSTALL_DIR/opt/data
-#export LD_PRELOAD="$INSTALL_DIR/usr/share/appfirst/libwrap.so.1.0.1"
+cat $INSTALL_DIR/etc/AppFirst.conf
+export LD_LIBRARY_PATH="$INSTALL_DIR/usr/share/appfirst:$LD_LIBRARY_PATH"
+mkdir -p $INSTALL_DIR/var
+mkdir -p $INSTALL_DIR/opt/data
+export LD_PRELOAD="$INSTALL_DIR/usr/share/appfirst/libwrap.so.1.0.1"
 
-#$INSTALL_DIR/usr/bin/collector --piddir="$INSTALL_DIR/var" --datadir="$INSTALL_DIR/opt/data"
+$INSTALL_DIR/usr/bin/collector --piddir="$INSTALL_DIR/var" --datadir="$INSTALL_DIR/opt/data"
 
 #mkdir -p $BUILD_DIR/.profile.d
 #echo 'PATH=$PATH:$HOME/bin' > $BUILD_DIR/.profile.d/go.sh
