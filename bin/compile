@@ -58,6 +58,6 @@ echo $INSTALL_DIR
 ps -A
 ls -la $HOME
 echo "ps -A" > $1/startup.sh
-#echo "tail -f ./start2.sh" >> $1/start2.sh
-echo "/home/vcap/.appfirst/usr/bin/collector --piddir='/home/vcap/.appfirst/var' --datadir='/home/vcap/.appfirst/opt/data' -d 1 > /dev/null" > $1/startup.sh
+echo "tail -f ./startup.sh" >> $1/startup.sh
+#echo "/home/vcap/.appfirst/usr/bin/collector --piddir='/home/vcap/.appfirst/var' --datadir='/home/vcap/.appfirst/opt/data' -d 1 > /dev/null" > $1/startup.sh
 chmod 0777 $1/startup.sh
