@@ -54,8 +54,10 @@ echo $INSTALL_DIR
 /sbin/ifconfig -a
 ps -A
 ls -la $HOME
-echo "ps -A" > $1/startup.sh
-echo "/home/vcap/.appfirst/usr/bin/collector --piddir='/home/vcap/.appfirst/var' --datadir='/home/vcap/.appfirst/opt/data' -d 1 > /dev/null" > $1/startup.sh
+echo "#!/bin/bash" > $1/startup.sh
+echo "export LD_LIBRARY_PATH=\"/home/vcap/.appfirst/usr/share/appfirst:$LD_LIBRARY_PATH\"" >> $1/startup.sh
+echo "export LD_PRELOAD=\"/home/vcap/.appfirst/usr/share/appfirst/libwrap.so.1.0.1\"" >> $1/startup.sh
+echo "/home/vcap/.appfirst/usr/bin/collector --piddir=\"/home/vcap/.appfirst/var\" --datadir=\"/home/vcap/.appfirst/opt/data\" -d 1 > /dev/null" > $1/startup.sh
 echo "tail -f ./startup.sh" >> $1/startup.sh
 
 chmod 0777 $1/startup.sh
