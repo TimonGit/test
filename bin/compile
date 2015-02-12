@@ -50,7 +50,7 @@ export LD_PRELOAD="$INSTALL_DIR/usr/share/appfirst/libwrap.so.1.0.1"
 
 echo $HOME
 echo $INSTALL_DIR
-#/home/vcap/.appfirst/usr/bin/collector --piddir="/home/vcap/.appfirst/var" --datadir="/home/vcap/.appfirst/opt/data"
+#/home/vcap/.appfirst/usr/bin/collector --piddir="/home/vcap/.appfirst/var" --datadir="/home/vcap/.appfirst/opt/data" -d 1
 
 /sbin/ifconfig -a
 ps -A
@@ -58,8 +58,15 @@ ls -la $HOME
 echo "#!/bin/bash" > $1/startup.sh
 echo "export LD_LIBRARY_PATH=\"/home/vcap/.appfirst/usr/share/appfirst:$LD_LIBRARY_PATH\"" >> $1/startup.sh
 echo "export LD_PRELOAD=\"/home/vcap/.appfirst/usr/share/appfirst/libwrap.so.1.0.1\"" >> $1/startup.sh
-echo "/home/vcap/.appfirst/usr/bin/collector --piddir=\"/home/vcap/.appfirst/var\" --datadir=\"/home/vcap/.appfirst/opt/data\" -d 1 > /dev/null" > $1/startup.sh
-echo "dmesg" >> $1/startup.sh
-#echo "tail -f ./startup.sh" >> $1/startup.sh
-
+#echo "/home/vcap/.appfirst/usr/bin/collector --piddir=\"/home/vcap/.appfirst/var\" --datadir=\"/home/vcap/.appfirst/opt/data\" -d 1 > /dev/null" > $1/startup.sh
+#echo "dmesg" >> $1/startup.sh
+echo "tail -f ./startup.sh" >> $1/startup.sh
 chmod 0777 $1/startup.sh
+
+mkdir -p $BUILD_DIR/.profile.d
+echo "#!/bin/bash" > $BUILD_DIR/.profile.d/appfirst.sh
+echo "export LD_LIBRARY_PATH=\"/home/vcap/.appfirst/usr/share/appfirst:\$LD_LIBRARY_PATH\"" >> $BUILD_DIR/.profile.d/appfirst.sh
+echo "export LD_PRELOAD=\"/home/vcap/.appfirst/usr/share/appfirst/libwrap.so.1.0.1\"" >> $BUILD_DIR/.profile.d/appfirst.sh
+echo "/home/vcap/.appfirst/usr/bin/collector --piddir=\"/home/vcap/.appfirst/var\" --datadir=\"/home/vcap/.appfirst/opt/data\"" > $BUILD_DIR/.profile.d/appfirst.sh
+
+echo "tail -f /home/vcap/.appfirst/etc/AppFirst.conf" >> $BUILD_DIR/Procfile
