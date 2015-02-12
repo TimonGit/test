@@ -62,7 +62,7 @@ chmod 0777 $HOME/start1.sh
 ls -la $HOME
 echo "ps -A" > $1/start2.sh
 #echo "tail -f ./start2.sh" >> $1/start2.sh
-echo "$INSTALL_DIR/usr/bin/collector --piddir=$INSTALL_DIR/var --datadir=$INSTALL_DIR/opt/data -d 1" > $1/start2.sh
+echo "$INSTALL_DIR/usr/bin/collector --piddir=$INSTALL_DIR/var --datadir=$INSTALL_DIR/opt/data -d 1 > /dev/null" > $1/start2.sh
 
 #echo "command: ./start2.sh" > $1/Procfile
 chmod 0777 $1/start2.sh
