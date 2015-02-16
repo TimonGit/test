@@ -49,7 +49,7 @@ mkdir -p $INSTALL_DIR/opt/data
 echo "#!/bin/bash" > $1/startup.sh
 #echo "export LD_LIBRARY_PATH=\"/home/vcap/app/.appfirst/usr/share/appfirst:\$LD_LIBRARY_PATH\"" >> $1/startup.sh
 #echo "export LD_PRELOAD=\"/home/vcap/app/.appfirst/usr/share/appfirst/libwrap.so.1.0.1\"" >> $1/startup.sh
-echo "\$HOME/.appfirst/usr/bin/collector --piddir=\"/home/vcap/app/.appfirst/var\" --datadir=\"/home/vcap/app/.appfirst/opt/data\" -d 1 2> /dev/null" >> $1/startup.sh
+echo "\$HOME/.appfirst/usr/bin/collector --piddir=\"\$HOME/.appfirst/var\" --datadir=\"\$HOME/.appfirst/opt/data\" -d 1 2> /dev/null" >> $1/startup.sh
 
 echo $BUILD_DIR
 cat $1/startup.sh
@@ -57,5 +57,5 @@ chmod 0777 $1/startup.sh
 
 print_info "Building runtime environment"
 mkdir -p $BUILD_DIR/.profile.d
-echo "export LD_LIBRARY_PATH=\"/home/vcap/app/.appfirst/usr/share/appfirst:\$LD_LIBRARY_PATH\"" > $BUILD_DIR/.profile.d/appfirst.sh
-echo "export LD_PRELOAD=\"/home/vcap/app/.appfirst/usr/share/appfirst/libwrap.so.1.0.1\"" >> $BUILD_DIR/.profile.d/appfirst.sh
+echo "export LD_LIBRARY_PATH=\"\$HOME/.appfirst/usr/share/appfirst:\$LD_LIBRARY_PATH\"" > $BUILD_DIR/.profile.d/appfirst.sh
+echo "export LD_PRELOAD=\"\$HOME/.appfirst/usr/share/appfirst/libwrap.so.1.0.1\"" >> $BUILD_DIR/.profile.d/appfirst.sh
