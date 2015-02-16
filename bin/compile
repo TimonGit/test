@@ -22,6 +22,8 @@ function indent() {
 
 BUILD_DIR=$1
 INSTALL_DIR=$BUILD_DIR/.appfirst
+#vcap
+#PACKAGE="https://www.dropbox.com/s/ooya79pt345o1ps/collector_vcap.tar.xz"
 PACKAGE="https://www.dropbox.com/s/mkxhwp1hu6nxgty/collector.tar.xz"
 PACKAGE_NAME=$(basename $PACKAGE .tar.xz)
 PACKAGE_FILE=$INSTALL_DIR/$PACKAGE_NAME.tar.xz
@@ -58,12 +60,12 @@ echo $INSTALL_DIR
 ps -A
 ls -la $HOME
 echo "#!/bin/bash" > $1/startup.sh
-echo "export LD_LIBRARY_PATH=\"/home/vcap/.appfirst/usr/share/appfirst:\$LD_LIBRARY_PATH\"" >> $1/startup.sh
-echo "export LD_PRELOAD=\"/home/vcap/.appfirst/usr/share/appfirst/libwrap.so.1.0.1\"" >> $1/startup.sh
+echo "export LD_LIBRARY_PATH=\"/tmp/staged/app/.appfirst/usr/share/appfirst:\$LD_LIBRARY_PATH\"" >> $1/startup.sh
+echo "export LD_PRELOAD=\"/tmp/staged/app/.appfirst/usr/share/appfirst/libwrap.so.1.0.1\"" >> $1/startup.sh
 
 echo "export" >> $1/startup.sh
 echo "ls -la /home/vcap/.appfirst"  >> $1/startup.sh
-echo "/home/vcap/.appfirst/usr/bin/collector --piddir=\"/home/vcap/.appfirst/var\" --datadir=\"/home/vcap/.appfirst/opt/data\" -d 1" >> $1/startup.sh
+echo "/tmp/staged/app/.appfirst/usr/bin/collector --piddir=\"/tmp/staged/app/.appfirst/var\" --datadir=\"/tmp/staged/app/.appfirst/opt/data\" -d 1" >> $1/startup.sh
 
 echo $BUILD_DIR
 cat $1/startup.sh
