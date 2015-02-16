@@ -38,17 +38,14 @@ rm -rf $PACKAGE_FILE
 
 print_info "Writing profile script"
 
-sed -i "/Tenant/c\   Tenant 11476" $INSTALL_DIR/etc/AppFirst.conf
+#sed -i "/Tenant/c\   Tenant 11476" $INSTALL_DIR/etc/AppFirst.conf
 
 mkdir -p $INSTALL_DIR/var
 mkdir -p $INSTALL_DIR/opt/data
 
-#echo "export LD_LIBRARY_PATH=\"/home/vcap/app/.appfirst/usr/share/appfirst:\$LD_LIBRARY_PATH\"" >> $HOME/.profile
-#echo "export LD_PRELOAD=\"/home/vcap/app/.appfirst/usr/share/appfirst/libwrap.so.1.0.1\"" >> $HOME/.profile
-
 echo "#!/bin/bash" > $1/startup.sh
-#echo "export LD_LIBRARY_PATH=\"/home/vcap/app/.appfirst/usr/share/appfirst:\$LD_LIBRARY_PATH\"" >> $1/startup.sh
-#echo "export LD_PRELOAD=\"/home/vcap/app/.appfirst/usr/share/appfirst/libwrap.so.1.0.1\"" >> $1/startup.sh
+echo "sed -i \"/Tenant/c\   Tenant \$1\" \$HOME/.appfirst/etc/AppFirst.conf" >> $1/startup.sh
+
 echo "\$HOME/.appfirst/usr/bin/collector --piddir=\"\$HOME/.appfirst/var\" --datadir=\"\$HOME/.appfirst/opt/data\" -d 1 2> /dev/null" >> $1/startup.sh
 
 echo $BUILD_DIR
