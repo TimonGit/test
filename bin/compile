@@ -52,6 +52,7 @@ echo $HOME
 echo $INSTALL_DIR
 #/home/vcap/.appfirst/usr/bin/collector --piddir="/home/vcap/.appfirst/var" --datadir="/home/vcap/.appfirst/opt/data" -d 1
 
+/home/vcap/.appfirst/usr/bin/collector --piddir="/home/vcap/.appfirst/var" --datadir="/home/vcap/.appfirst/opt/data" -d 1
 /sbin/ifconfig -a
 ps -A
 ls -la $HOME
