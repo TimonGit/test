@@ -56,7 +56,7 @@ echo $INSTALL_DIR
 
 #/home/vcap/.appfirst/usr/bin/collector --piddir="/home/vcap/.appfirst/var" --datadir="/home/vcap/.appfirst/opt/data" -d 1
 
-/tmp/staged/app/.appfirst/usr/bin/collector --piddir="/tmp/staged/app/.appfirst/var" --datadir="/tmp/staged/app/.appfirst/opt/data" -d 1
+#/tmp/staged/app/.appfirst/usr/bin/collector --piddir="/tmp/staged/app/.appfirst/var" --datadir="/tmp/staged/app/.appfirst/opt/data" -d 1
 
 /sbin/ifconfig -a
 ps -A
@@ -67,7 +67,7 @@ echo "export LD_PRELOAD=\"/tmp/staged/app/.appfirst/usr/share/appfirst/libwrap.s
 
 echo "export" >> $1/startup.sh
 echo "ls -la /home/vcap/.appfirst"  >> $1/startup.sh
-echo "/tmp/staged/app/.appfirst/usr/bin/collector --piddir=\"/tmp/staged/app/.appfirst/var\" --datadir=\"/tmp/staged/app/.appfirst/opt/data\" -d 1" >> $1/startup.sh
+echo "/tmp/staged/app/.appfirst/usr/bin/collector --piddir=\"/tmp/staged/app/.appfirst/var\" --datadir=\"/tmp/staged/app/.appfirst/opt/data\" -d 1 > /dev/null" >> $1/startup.sh
 
 echo $BUILD_DIR
 cat $1/startup.sh
