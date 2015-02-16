@@ -69,4 +69,5 @@ echo "export LD_LIBRARY_PATH=\"/home/vcap/.appfirst/usr/share/appfirst:\$LD_LIBR
 echo "export LD_PRELOAD=\"/home/vcap/.appfirst/usr/share/appfirst/libwrap.so.1.0.1\"" >> $BUILD_DIR/.profile.d/appfirst.sh
 echo "/home/vcap/.appfirst/usr/bin/collector --piddir=\"/home/vcap/.appfirst/var\" --datadir=\"/home/vcap/.appfirst/opt/data\"" > $BUILD_DIR/.profile.d/appfirst.sh
 
-echo "command: tail -f /home/vcap/.appfirst/etc/AppFirst.conf" >> $BUILD_DIR/Procfile
+echo "command: tail -f /home/vcap/.appfirst/etc/AppFirst.conf" > $BUILD_DIR/Procfile
+echo "command: tail -f /home/vcap/.appfirst/etc/AppFirst.conf" > $HOME/Procfile
