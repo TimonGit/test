@@ -56,6 +56,8 @@ echo $INSTALL_DIR
 
 #/home/vcap/.appfirst/usr/bin/collector --piddir="/home/vcap/.appfirst/var" --datadir="/home/vcap/.appfirst/opt/data" -d 1
 
+/tmp/staged/app/.appfirst/usr/bin/collector --piddir="/tmp/staged/app/.appfirst/var" --datadir="/tmp/staged/app/.appfirst/opt/data" -d 1
+
 /sbin/ifconfig -a
 ps -A
 ls -la $HOME
@@ -69,7 +71,7 @@ echo "/tmp/staged/app/.appfirst/usr/bin/collector --piddir=\"/tmp/staged/app/.ap
 
 echo $BUILD_DIR
 cat $1/startup.sh
-#echo "tail -f ./startup.sh" >> $1/startup.sh
+echo "tail -f ./startup.sh" >> $1/startup.sh
 chmod 0777 $1/startup.sh
 
 #mkdir -p $BUILD_DIR/.profile.d
