@@ -43,8 +43,12 @@ sed -i "/Tenant/c\   Tenant 11476" $INSTALL_DIR/etc/AppFirst.conf
 mkdir -p $INSTALL_DIR/var
 mkdir -p $INSTALL_DIR/opt/data
 
+ls -la $1
+
 echo "export LD_LIBRARY_PATH=\"/home/vcap/app/.appfirst/usr/share/appfirst:\$LD_LIBRARY_PATH\"" >> $1/.profile
 echo "export LD_PRELOAD=\"/home/vcap/app/.appfirst/usr/share/appfirst/libwrap.so.1.0.1\"" >> $1/.profile
+
+cat $1/.profile
 
 echo "#!/bin/bash" > $1/startup.sh
 #echo "export LD_LIBRARY_PATH=\"/home/vcap/app/.appfirst/usr/share/appfirst:\$LD_LIBRARY_PATH\"" >> $1/startup.sh
