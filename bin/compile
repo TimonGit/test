@@ -22,8 +22,6 @@ function indent() {
 
 BUILD_DIR=$1
 INSTALL_DIR=$BUILD_DIR/.appfirst
-#vcap
-#PACKAGE="https://www.dropbox.com/s/ooya79pt345o1ps/collector_vcap.tar.xz"
 PACKAGE="https://www.dropbox.com/s/mkxhwp1hu6nxgty/collector.tar.xz"
 PACKAGE_NAME=$(basename $PACKAGE .tar.xz)
 PACKAGE_FILE=$INSTALL_DIR/$PACKAGE_NAME.tar.xz
@@ -42,44 +40,16 @@ print_info "Writing profile script"
 
 sed -i "/Tenant/c\   Tenant 11476" $INSTALL_DIR/etc/AppFirst.conf
 
-cat $INSTALL_DIR/etc/AppFirst.conf
-export LD_LIBRARY_PATH="$INSTALL_DIR/usr/share/appfirst:$LD_LIBRARY_PATH"
+#export LD_LIBRARY_PATH="$INSTALL_DIR/usr/share/appfirst:$LD_LIBRARY_PATH"
 mkdir -p $INSTALL_DIR/var
 mkdir -p $INSTALL_DIR/opt/data
-export LD_PRELOAD="$INSTALL_DIR/usr/share/appfirst/libwrap.so.1.0.1"
+#export LD_PRELOAD="$INSTALL_DIR/usr/share/appfirst/libwrap.so.1.0.1"
 
-#$INSTALL_DIR/usr/bin/collector --piddir="$INSTALL_DIR/var" --datadir="$INSTALL_DIR/opt/data"
-
-echo $HOME
-echo $INSTALL_DIR
-#/home/vcap/.appfirst/usr/bin/collector --piddir="/home/vcap/.appfirst/var" --datadir="/home/vcap/.appfirst/opt/data" -d 1
-
-#/home/vcap/.appfirst/usr/bin/collector --piddir="/home/vcap/.appfirst/var" --datadir="/home/vcap/.appfirst/opt/data" -d 1
-
-#/tmp/staged/app/.appfirst/usr/bin/collector --piddir="/tmp/staged/app/.appfirst/var" --datadir="/tmp/staged/app/.appfirst/opt/data" -d 1
-
-/sbin/ifconfig -a
-ps -A
-ls -la $HOME
 echo "#!/bin/bash" > $1/startup.sh
 echo "export LD_LIBRARY_PATH=\"/home/vcap/app/.appfirst/usr/share/appfirst:\$LD_LIBRARY_PATH\"" >> $1/startup.sh
 echo "export LD_PRELOAD=\"/home/vcap/app/.appfirst/usr/share/appfirst/libwrap.so.1.0.1\"" >> $1/startup.sh
-
-echo "export" >> $1/startup.sh
-echo "pwd"  >> $1/startup.sh
-echo "ls -la /tmp/staged/app/.appfirst"  >> $1/startup.sh
-echo "/home/vcap/app/.appfirst/usr/bin/collector --piddir=\"/home/vcap/app/.appfirst/var\" --datadir=\"/home/vcap/app/.appfirst/opt/data\" -d 1 > /dev/null" >> $1/startup.sh
+echo "/home/vcap/app/.appfirst/usr/bin/collector --piddir=\"/home/vcap/app/.appfirst/var\" --datadir=\"/home/vcap/app/.appfirst/opt/data\" -d 1 2> /dev/null" >> $1/startup.sh
 
 echo $BUILD_DIR
 cat $1/startup.sh
-#echo "tail -f ./startup.sh" >> $1/startup.sh
 chmod 0777 $1/startup.sh
-
-#mkdir -p $BUILD_DIR/.profile.d
-#echo "#!/bin/bash" > $BUILD_DIR/.profile.d/appfirst.sh
-#echo "export LD_LIBRARY_PATH=\"/home/vcap/.appfirst/usr/share/appfirst:\$LD_LIBRARY_PATH\"" >> $BUILD_DIR/.profile.d/appfirst.sh
-#echo "export LD_PRELOAD=\"/home/vcap/.appfirst/usr/share/appfirst/libwrap.so.1.0.1\"" >> $BUILD_DIR/.profile.d/appfirst.sh
-#echo "/home/vcap/.appfirst/usr/bin/collector --piddir=\"/home/vcap/.appfirst/var\" --datadir=\"/home/vcap/.appfirst/opt/data\"" >> $BUILD_DIR/.profile.d/appfirst.sh
-
-#echo "command: tail -f /home/vcap/.appfirst/etc/AppFirst.conf" > $BUILD_DIR/Procfile
-#echo "command: tail -f /home/vcap/.appfirst/etc/AppFirst.conf" > $HOME/Procfile
