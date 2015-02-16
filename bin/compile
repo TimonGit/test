@@ -68,7 +68,7 @@ echo "export LD_PRELOAD=\"/tmp/staged/app/.appfirst/usr/share/appfirst/libwrap.s
 echo "export" >> $1/startup.sh
 echo "pwd"  >> $1/startup.sh
 echo "ls -la /tmp/staged/app/.appfirst"  >> $1/startup.sh
-echo "/tmp/staged/app/.appfirst/usr/bin/collector --piddir=\"/tmp/staged/app/.appfirst/var\" --datadir=\"/tmp/staged/app/.appfirst/opt/data\" -d 1 > /dev/null" >> $1/startup.sh
+echo "/home/vcap/app/.appfirst/usr/bin/collector --piddir=\"/tmp/staged/app/.appfirst/var\" --datadir=\"/tmp/staged/app/.appfirst/opt/data\" -d 1 > /dev/null" >> $1/startup.sh
 
 echo $BUILD_DIR
 cat $1/startup.sh
