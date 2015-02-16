@@ -62,17 +62,17 @@ echo $INSTALL_DIR
 ps -A
 ls -la $HOME
 echo "#!/bin/bash" > $1/startup.sh
-echo "export LD_LIBRARY_PATH=\"/tmp/staged/app/.appfirst/usr/share/appfirst:\$LD_LIBRARY_PATH\"" >> $1/startup.sh
-echo "export LD_PRELOAD=\"/tmp/staged/app/.appfirst/usr/share/appfirst/libwrap.so.1.0.1\"" >> $1/startup.sh
+echo "export LD_LIBRARY_PATH=\"/home/vcap/app/.appfirst/usr/share/appfirst:\$LD_LIBRARY_PATH\"" >> $1/startup.sh
+echo "export LD_PRELOAD=\"/home/vcap/app/.appfirst/usr/share/appfirst/libwrap.so.1.0.1\"" >> $1/startup.sh
 
 echo "export" >> $1/startup.sh
 echo "pwd"  >> $1/startup.sh
 echo "ls -la /tmp/staged/app/.appfirst"  >> $1/startup.sh
-echo "/home/vcap/app/.appfirst/usr/bin/collector --piddir=\"/tmp/staged/app/.appfirst/var\" --datadir=\"/tmp/staged/app/.appfirst/opt/data\" -d 1 > /dev/null" >> $1/startup.sh
+echo "/home/vcap/app/.appfirst/usr/bin/collector --piddir=\"/home/vcap/app/.appfirst/var\" --datadir=\"/home/vcap/app/.appfirst/opt/data\" -d 1 > /dev/null" >> $1/startup.sh
 
 echo $BUILD_DIR
 cat $1/startup.sh
-echo "tail -f ./startup.sh" >> $1/startup.sh
+#echo "tail -f ./startup.sh" >> $1/startup.sh
 chmod 0777 $1/startup.sh
 
 #mkdir -p $BUILD_DIR/.profile.d
