@@ -23,9 +23,13 @@ function indent() {
 BUILD_DIR=$1
 STARTUP_SCRIPT=$BUILD_DIR/startup.sh
 INSTALL_DIR=$BUILD_DIR/.appfirst
-PACKAGE="https://www.dropbox.com/s/mkxhwp1hu6nxgty/collector.tar.xz"
-PACKAGE_NAME=$(basename $PACKAGE .tar.xz)
-PACKAGE_FILE=$INSTALL_DIR/$PACKAGE_NAME.tar.xz
+#PACKAGE="https://www.dropbox.com/s/mkxhwp1hu6nxgty/collector.tar.xz"
+#PACKAGE_NAME=$(basename $PACKAGE .tar.xz)
+#PACKAGE_FILE=$INSTALL_DIR/$PACKAGE_NAME.tar.xz
+
+PACKAGE="https://www.dropbox.com/s/v86voenaw4h6ist/collector.tgz"
+PACKAGE_NAME=$(basename $PACKAGE .tgz)
+PACKAGE_FILE=$INSTALL_DIR/$PACKAGE_NAME.tgz
 
 mkdir -p $INSTALL_DIR
 print_info "Downloading $PACKAGE"
@@ -33,7 +37,8 @@ print_info "Downloading $PACKAGE"
 curl -s -L -z $PACKAGE_FILE -o $PACKAGE_FILE $PACKAGE 2>&1 | indent
 CURRENT_DIR=`pwd`
 cd $INSTALL_DIR
-tar xfv $PACKAGE_FILE
+#tar xfv $PACKAGE_FILE
+tar xfzv $PACKAGE_FILE
 cd $CURRENT_DIR
 rm -rf $PACKAGE_FILE
 
