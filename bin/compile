@@ -54,7 +54,7 @@ mkdir -p $INSTALL_DIR/opt/data
 print_info "Downloading $PACKAGE"
 curl -s -L -z $PACKAGE_FILE -o $PACKAGE_FILE $PACKAGE 2>&1 | indent
 
-print_info "Extracting $PACKAGE_NAME.deb"
+print_info "Extracting $PACKAGE_NAME.$PKG_EXT"
 dpkg -x $PACKAGE_FILE $INSTALL_DIR
 rm -rf $PACKAGE_FILE
 
