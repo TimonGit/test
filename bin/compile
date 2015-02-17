@@ -43,7 +43,8 @@ CURRENT_DIR=`pwd`
 cd $INSTALL_DIR
 #tar xfv $PACKAGE_FILE
 #tar xfzv $PACKAGE_FILE
-dpkg -x $PACKAGE_FILE .
+dpkg -x $PACKAGE_FILE $INSTALL_DIR
+ls -la $INSTALL_DIR
 cd $CURRENT_DIR
 rm -rf $PACKAGE_FILE
 
