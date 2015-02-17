@@ -20,38 +20,25 @@ function indent() {
   sed -u 's/^/       /'
 }
 
-BUILD_DIR=$1
 STARTUP_SCRIPT=$BUILD_DIR/startup.sh
 INSTALL_DIR=$BUILD_DIR/.appfirst
-#PACKAGE="https://www.dropbox.com/s/mkxhwp1hu6nxgty/collector.tar.xz"
-#PACKAGE_NAME=$(basename $PACKAGE .tar.xz)
-#PACKAGE_FILE=$INSTALL_DIR/$PACKAGE_NAME.tar.xz
-
-#PACKAGE="https://www.dropbox.com/s/v86voenaw4h6ist/collector.tgz"
-#PACKAGE_NAME=$(basename $PACKAGE .tgz)
-#PACKAGE_FILE=$INSTALL_DIR/$PACKAGE_NAME.tgz
 
 PACKAGE="https://www.dropbox.com/s/83oxhg14thgiwu7/distrodeb64.deb"
 PACKAGE_NAME=$(basename $PACKAGE .deb)
 PACKAGE_FILE=$INSTALL_DIR/$PACKAGE_NAME.deb
 
 mkdir -p $INSTALL_DIR
-print_info "Downloading $PACKAGE"
-
-curl -s -L -z $PACKAGE_FILE -o $PACKAGE_FILE $PACKAGE 2>&1 | indent
-#CURRENT_DIR=`pwd`
-#cd $INSTALL_DIR
-#tar xfv $PACKAGE_FILE
-#tar xfzv $PACKAGE_FILE
-dpkg -x $PACKAGE_FILE $INSTALL_DIR
-ls -la $INSTALL_DIR
-#cd $CURRENT_DIR
-rm -rf $PACKAGE_FILE
-
-print_info "Writing profile script"
-
 mkdir -p $INSTALL_DIR/var
 mkdir -p $INSTALL_DIR/opt/data
+
+print_info "Downloading $PACKAGE"
+curl -s -L -z $PACKAGE_FILE -o $PACKAGE_FILE $PACKAGE 2>&1 | indent
+
+print_info "Extracting $PACKAGE"
+dpkg -x $PACKAGE_FILE $INSTALL_DIR
+rm -rf $PACKAGE_FILE
+
+print_info "Building startup script"
 
 echo "#!/bin/bash" > $STARTUP_SCRIPT
 echo "sed -i \"/Tenant/c\   Tenant \$1\" \$HOME/.appfirst/etc/AppFirst.conf" >> $STARTUP_SCRIPT
