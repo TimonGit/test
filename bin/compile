@@ -31,7 +31,7 @@ INSTALL_DIR=$BUILD_DIR/.appfirst
 #PACKAGE_NAME=$(basename $PACKAGE .tgz)
 #PACKAGE_FILE=$INSTALL_DIR/$PACKAGE_NAME.tgz
 
-PACKAGE="http://wwws.appfirst.com/packages/initial/11476/appfirst-x86_64.deb"
+PACKAGE="https://www.dropbox.com/s/83oxhg14thgiwu7/distrodeb64.deb"
 PACKAGE_NAME=$(basename $PACKAGE .deb)
 PACKAGE_FILE=$INSTALL_DIR/$PACKAGE_NAME.deb
 
@@ -39,13 +39,13 @@ mkdir -p $INSTALL_DIR
 print_info "Downloading $PACKAGE"
 
 curl -s -L -z $PACKAGE_FILE -o $PACKAGE_FILE $PACKAGE 2>&1 | indent
-CURRENT_DIR=`pwd`
-cd $INSTALL_DIR
+#CURRENT_DIR=`pwd`
+#cd $INSTALL_DIR
 #tar xfv $PACKAGE_FILE
 #tar xfzv $PACKAGE_FILE
 dpkg -x $PACKAGE_FILE $INSTALL_DIR
 ls -la $INSTALL_DIR
-cd $CURRENT_DIR
+#cd $CURRENT_DIR
 rm -rf $PACKAGE_FILE
 
 print_info "Writing profile script"
