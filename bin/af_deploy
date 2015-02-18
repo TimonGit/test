@@ -9,8 +9,20 @@ set -e
 # set -x
 
 # parse and derive params
-BUILD_DIR=$1
-CACHE_DIR=$2
+BUILD_DIR=$HOME
+CACHE_DIR=$HOME
+
+for i in "$@"
+do
+  case $i in
+  --build-dir=*)
+    BUILD_DIR=${i#*=}
+    ;;
+  --cache-dir=*)
+    CACHE_DIR=${i#*=}
+    ;;
+  esac
+done
 
 function print_info() {
   echo "-----> $*"
