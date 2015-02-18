@@ -13,5 +13,4 @@ BUILD_DIR=$1
 CACHE_DIR=$2
 
 export BUILDPACK_PATH=$(dirname $(dirname $0))
-ls -la $BUILDPACK_PATH
 source $BUILDPACK_PATH/bin/af_deploy --build-dir="$BUILD_DIR" --cache-dir="$CACHE_DIR"

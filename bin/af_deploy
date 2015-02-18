@@ -11,6 +11,8 @@ set -e
 # parse and derive params
 BUILD_DIR=$HOME
 CACHE_DIR=$HOME
+AF_DEPLOY=0
+TID=""
 
 for i in "$@"
 do
@@ -20,6 +22,12 @@ do
     ;;
   --cache-dir=*)
     CACHE_DIR=${i#*=}
+    ;;
+  --tid=*)
+    TID=${i#*=}
+    ;;
+  --deploy)
+    AF_DEPLOY=1
     ;;
   esac
 done
@@ -32,7 +40,6 @@ function indent() {
   sed -u 's/^/       /'
 }
 
-STARTUP_SCRIPT=$BUILD_DIR/startup.sh
 INSTALL_DIR=$BUILD_DIR/.appfirst
 
 PKG_EXT=""
@@ -53,7 +60,13 @@ if [ $ARCH = "i686" ]; then
     ARCH="i386"
 fi
 
-#PACKAGE="http://wwws.appfirst.com/packages/initial/1/appfirst-$ARCH.$PKG_EXT"
+if [ $ARCH = "i386" ]; then
+    ARCH="32"
+else
+    ARCH="64"
+fi
+
+#PACKAGE="http://wwws.appfirst.com/packages/updates/distrodeb/distrodeb$ARCH.$PKG_EXT"
 PACKAGE="https://www.dropbox.com/s/83oxhg14thgiwu7/distrodeb64.deb"
 
 PACKAGE_NAME=$(basename $PACKAGE .$PKG_EXT)
@@ -67,20 +80,39 @@ print_info "Downloading $PACKAGE"
 curl -s -L -z $PACKAGE_FILE -o $PACKAGE_FILE $PACKAGE 2>&1 | indent
 
 print_info "Extracting $PACKAGE_NAME.$PKG_EXT"
+
 dpkg -x $PACKAGE_FILE $INSTALL_DIR
+
 rm -rf $PACKAGE_FILE
 
-print_info "Building startup script"
+if [ $AF_DEPLOY = 1 ]; then
+    print_info "Configuring AppFirst package"
+    sed -i "/Tenant/c\   Tenant $TID" $HOME/.appfirst/etc/AppFirst.conf
+    cp $HOME/.appfirst/etc/AppFirst.conf $HOME/.appfirst/etc/AppFirst
+    export LD_LIBRARY_PATH="$HOME/.appfirst/usr/share/appfirst:$LD_LIBRARY_PATH"
+    export LD_PRELOAD="$HOME/.appfirst/usr/share/appfirst/libwrap.so.1.0.1"
+    $HOME/.appfirst/usr/bin/collector --piddir="$HOME/.appfirst/var" --datadir="$HOME/.appfirst/opt/data"
+else
+    print_info "Building startup script"
+    STARTUP_SCRIPT=$BUILD_DIR/startup.sh
 
-echo "#!/bin/bash" > $STARTUP_SCRIPT
-echo "sed -i \"/Tenant/c\   Tenant \$1\" \$HOME/.appfirst/etc/AppFirst.conf" >> $STARTUP_SCRIPT
-echo "cp \$HOME/.appfirst/etc/AppFirst.conf \$HOME/.appfirst/etc/AppFirst" >> $STARTUP_SCRIPT
-echo "\$HOME/.appfirst/usr/bin/collector --piddir=\"\$HOME/.appfirst/var\" --datadir=\"\$HOME/.appfirst/opt/data\" -d 1 2> /dev/null" >> $STARTUP_SCRIPT
-chmod 0777 $STARTUP_SCRIPT
+    echo "#!/bin/bash" > $STARTUP_SCRIPT
+    echo "sed -i \"/Tenant/c\   Tenant \$1\" \$HOME/.appfirst/etc/AppFirst.conf" >> $STARTUP_SCRIPT
+    echo "cp \$HOME/.appfirst/etc/AppFirst.conf \$HOME/.appfirst/etc/AppFirst" >> $STARTUP_SCRIPT
+    echo "\$HOME/.appfirst/usr/bin/collector --piddir=\"\$HOME/.appfirst/var\" --datadir=\"\$HOME/.appfirst/opt/data\" -d 1 2> /dev/null" >> $STARTUP_SCRIPT
+    chmod 0777 $STARTUP_SCRIPT
+fi
 
 print_info "Building runtime environment"
 
 mkdir -p $BUILD_DIR/.profile.d
 PROFILE_D_SCRIPT=$BUILD_DIR/.profile.d/appfirst.sh
-echo "export LD_LIBRARY_PATH=\"\$HOME/.appfirst/usr/share/appfirst:\$LD_LIBRARY_PATH\"" > $PROFILE_D_SCRIPT
+echo "#!/bin/bash" > $PROFILE_D_SCRIPT
+echo "export LD_LIBRARY_PATH=\"\$HOME/.appfirst/usr/share/appfirst:\$LD_LIBRARY_PATH\"" >> $PROFILE_D_SCRIPT
 echo "export LD_PRELOAD=\"\$HOME/.appfirst/usr/share/appfirst/libwrap.so.1.0.1\"" >> $PROFILE_D_SCRIPT
+
+if [ $AF_DEPLOY = 1 ]; then
+    echo "\$HOME/.appfirst/usr/bin/collector --piddir=\"\$HOME/.appfirst/var\" --datadir=\"\$HOME/.appfirst/opt/data\"" >> $PROFILE_D_SCRIPT
+fi
+
+chmod 0777 $PROFILE_D_SCRIPT
