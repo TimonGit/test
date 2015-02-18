@@ -13,4 +13,4 @@ BUILD_DIR=$1
 CACHE_DIR=$2
 
 ls -la $BUILD_DIR
-./af_deploy $BUILD_DIR $CACHE_DIR
+source af_deploy $BUILD_DIR $CACHE_DIR
