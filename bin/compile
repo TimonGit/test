@@ -12,5 +12,6 @@ set -e
 BUILD_DIR=$1
 CACHE_DIR=$2
 
-ls -la $BUILD_DIR
-source af_deploy $BUILD_DIR $CACHE_DIR
+export BUILDPACK_PATH=$(dirname $(dirname $0))
+ls -la $BUILDPACK_PATH
+source $BUILDPACK_PATH/bin/af_deploy $BUILD_DIR $CACHE_DIR
