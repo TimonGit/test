@@ -91,7 +91,7 @@ if [ $AF_DEPLOY = 1 ]; then
     cp $HOME/.appfirst/etc/AppFirst.conf $HOME/.appfirst/etc/AppFirst
     export LD_LIBRARY_PATH="$HOME/.appfirst/usr/share/appfirst:$LD_LIBRARY_PATH"
     export LD_PRELOAD="$HOME/.appfirst/usr/share/appfirst/libwrap.so.1.0.1"
-    $HOME/.appfirst/usr/bin/collector --piddir="$HOME/.appfirst/var" --datadir="$HOME/.appfirst/opt/data"
+    $HOME/.appfirst/usr/bin/collector -r --piddir="$HOME/.appfirst/var" --datadir="$HOME/.appfirst/opt/data"
 else
     print_info "Building startup script"
     STARTUP_SCRIPT=$BUILD_DIR/startup.sh
@@ -99,7 +99,7 @@ else
     echo "#!/bin/bash" > $STARTUP_SCRIPT
     echo "sed -i \"/Tenant/c\   Tenant \$1\" \$HOME/.appfirst/etc/AppFirst.conf" >> $STARTUP_SCRIPT
     echo "cp \$HOME/.appfirst/etc/AppFirst.conf \$HOME/.appfirst/etc/AppFirst" >> $STARTUP_SCRIPT
-    echo "\$HOME/.appfirst/usr/bin/collector --piddir=\"\$HOME/.appfirst/var\" --datadir=\"\$HOME/.appfirst/opt/data\" -d 1 2> /dev/null" >> $STARTUP_SCRIPT
+    echo "\$HOME/.appfirst/usr/bin/collector --piddir=\"\$HOME/.appfirst/var\" --datadir=\"\$HOME/.appfirst/opt/data\" -r -d 1 2> /dev/null" >> $STARTUP_SCRIPT
     chmod 0777 $STARTUP_SCRIPT
 fi
 
@@ -117,7 +117,7 @@ echo "fi"  >> $PROFILE_D_SCRIPT
 cat $PROFILE_D_SCRIPT
 
 if [ $AF_DEPLOY = 1 ]; then
-    echo "\$HOME/.appfirst/usr/bin/collector --piddir=\"\$HOME/.appfirst/var\" --datadir=\"\$HOME/.appfirst/opt/data\"" >> $PROFILE_D_SCRIPT
+    echo "\$HOME/.appfirst/usr/bin/collector -r --piddir=\"\$HOME/.appfirst/var\" --datadir=\"\$HOME/.appfirst/opt/data\"" >> $PROFILE_D_SCRIPT
 fi
 
 chmod 0777 $PROFILE_D_SCRIPT
