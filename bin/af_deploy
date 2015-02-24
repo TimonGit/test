@@ -110,8 +110,8 @@ PROFILE_D_SCRIPT=$BUILD_DIR/.profile.d/appfirst.sh
 echo "#!/bin/bash" > $PROFILE_D_SCRIPT
 echo "export LD_LIBRARY_PATH=\"\$HOME/.appfirst/usr/share/appfirst:\$LD_LIBRARY_PATH\"" >> $PROFILE_D_SCRIPT
 echo "export LD_PRELOAD=\"\$HOME/.appfirst/usr/share/appfirst/libwrap.so.1.0.1\"" >> $PROFILE_D_SCRIPT
-echo "if [ ! -e \$HOME/.appfirst/usr/share/appfirst/AppFirst ]; then" >> $PROFILE_D_SCRIPT
-echo "ln -s \$HOME/.appfirst/etc/AppFirst \$HOME/.appfirst/usr/share/appfirst/AppFirst" >> $PROFILE_D_SCRIPT
+echo "if [ ! -e $HOME/.appfirst/usr/share/appfirst/AppFirst ]; then" >> $PROFILE_D_SCRIPT
+echo "ln -s $HOME/.appfirst/etc/AppFirst $HOME/.appfirst/usr/share/appfirst/AppFirst" >> $PROFILE_D_SCRIPT
 echo "fi"  >> $PROFILE_D_SCRIPT
 
 cat $PROFILE_D_SCRIPT
