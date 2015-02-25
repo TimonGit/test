@@ -89,6 +89,11 @@ if [ $AF_DEPLOY = 1 ]; then
     print_info "Configuring AppFirst package"
     sed -i "/Tenant/c\   Tenant $TID" $HOME/.appfirst/etc/AppFirst.conf
     cp $HOME/.appfirst/etc/AppFirst.conf $HOME/.appfirst/etc/AppFirst
+
+    if [ ! -e $HOME/.appfirst/usr/share/appfirst/AppFirst ]; then
+        ln -s $HOME/.appfirst/etc/AppFirst $HOME/.appfirst/usr/share/appfirst/AppFirst
+    fi
+
     export LD_LIBRARY_PATH="$HOME/.appfirst/usr/share/appfirst:$LD_LIBRARY_PATH"
     export LD_PRELOAD="$HOME/.appfirst/usr/share/appfirst/libwrap.so.1.0.1"
     $HOME/.appfirst/usr/bin/collector --piddir="$HOME/.appfirst/var" --datadir="$HOME/.appfirst/opt/data"
