@@ -9,8 +9,8 @@ set -e
 # set -x
 
 # parse and derive params
-BUILD_DIR=$HOME
-CACHE_DIR=$HOME
+BUILD_DIR=$1
+CACHE_DIR=$2
 AF_DEPLOY=0
 TID=""
 
