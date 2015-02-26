@@ -123,7 +123,9 @@ echo "export LD_PRELOAD=\"\$HOME/.profile.d/.appfirst/usr/share/appfirst/libwrap
 echo "if [ ! -e \$HOME/.profile.d/.appfirst/usr/share/appfirst/AppFirst ]; then" >> $PROFILE_D_SCRIPT
 echo "ln -s \$HOME/.profile.d/.appfirst/etc/AppFirst \$HOME/.profile.d/.appfirst/usr/share/appfirst/AppFirst" >> $PROFILE_D_SCRIPT
 echo "fi"  >> $PROFILE_D_SCRIPT
-echo "\$HOME/.profile.d/.appfirst/usr/bin/collector --piddir=\"\$HOME/.profile.d/.appfirst/var\" --datadir=\"\$HOME/.profile.d/.appfirst/opt/data\"" >> $PROFILE_D_SCRIPT
+#echo "\$HOME/.profile.d/.appfirst/usr/bin/collector --piddir=\"\$HOME/.profile.d/.appfirst/var\" --datadir=\"\$HOME/.profile.d/.appfirst/opt/data\"" >> $PROFILE_D_SCRIPT
+
+chmod 0777 $PROFILE_D_SCRIPT
 
 #if [ $AF_DEPLOY = 1 ]; then
 #    echo "\$HOME/.appfirst/usr/bin/collector --piddir=\"\$HOME/.appfirst/var\" --datadir=\"\$HOME/.appfirst/opt/data\"" >> $PROFILE_D_SCRIPT
@@ -133,4 +135,3 @@ echo "\$HOME/.profile.d/.appfirst/usr/bin/collector --piddir=\"\$HOME/.profile.d
 cat $PROFILE_D_SCRIPT
 
 
-chmod 0777 $PROFILE_D_SCRIPT
