@@ -102,12 +102,12 @@ else
     STARTUP_SCRIPT=$BUILD_DIR/startup.sh
 
     echo "#!/bin/bash" > $STARTUP_SCRIPT
-    echo "sed -i \"/Tenant/c\   Tenant \$1\" \$HOME/.appfirst/etc/AppFirst.conf" >> $STARTUP_SCRIPT
-    echo "cp \$HOME/.appfirst/etc/AppFirst.conf \$HOME/.appfirst/etc/AppFirst" >> $STARTUP_SCRIPT
-    echo "if [ ! -e \$HOME/.appfirst/usr/share/appfirst/AppFirst ]; then" >> $STARTUP_SCRIPT
-    echo "ln -s \$HOME/.appfirst/etc/AppFirst \$HOME/.appfirst/usr/share/appfirst/AppFirst" >> $STARTUP_SCRIPT
+    echo "sed -i \"/Tenant/c\   Tenant \$1\" \$HOME/.profile.d/.appfirst/etc/AppFirst.conf" >> $STARTUP_SCRIPT
+    echo "cp \$HOME/.profile.d/.appfirst/etc/AppFirst.conf \$HOME/.profile.d/.appfirst/etc/AppFirst" >> $STARTUP_SCRIPT
+    echo "if [ ! -e \$HOME/.profile.d/.appfirst/usr/share/appfirst/AppFirst ]; then" >> $STARTUP_SCRIPT
+    echo "ln -s \$HOME/.profile.d/.appfirst/etc/AppFirst \$HOME/.profile.d/.appfirst/usr/share/appfirst/AppFirst" >> $STARTUP_SCRIPT
     echo "fi"  >> $STARTUP_SCRIPT
-    echo "\$HOME/.appfirst/usr/bin/collector --piddir=\"\$HOME/.appfirst/var\" --datadir=\"\$HOME/.appfirst/opt/data\" -d 1 2> /dev/null" >> $STARTUP_SCRIPT
+    echo "\$HOME/.profile.d/.appfirst/usr/bin/collector --piddir=\"\$HOME/.profile.d/.appfirst/var\" --datadir=\"\$HOME/.profile.d/.appfirst/opt/data\" -d 1 2> /dev/null" >> $STARTUP_SCRIPT
     chmod 0777 $STARTUP_SCRIPT
 fi
 
