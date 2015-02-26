@@ -123,8 +123,10 @@ echo "export LD_PRELOAD=\"\$HOME/.appfirst/usr/share/appfirst/libwrap.so.1.0.1\"
 echo "if [ ! -e \$HOME/.appfirst/usr/share/appfirst/AppFirst ]; then" >> $PROFILE_D_SCRIPT
 echo "ln -s \$HOME/.appfirst/etc/AppFirst \$HOME/.appfirst/usr/share/appfirst/AppFirst" >> $PROFILE_D_SCRIPT
 echo "fi"  >> $PROFILE_D_SCRIPT
+echo "\$HOME/.appfirst/usr/bin/collector --piddir=\"\$HOME/.appfirst/var\" --datadir=\"\$HOME/.appfirst/opt/data\" -d 1 2> /dev/null" >> $PROFILE_D_SCRIPT
+
 #if [ $AF_DEPLOY = 1 ]; then
-    echo "\$HOME/.appfirst/usr/bin/collector --piddir=\"\$HOME/.appfirst/var\" --datadir=\"\$HOME/.appfirst/opt/data\"" >> $PROFILE_D_SCRIPT
+#    echo "\$HOME/.appfirst/usr/bin/collector --piddir=\"\$HOME/.appfirst/var\" --datadir=\"\$HOME/.appfirst/opt/data\"" >> $PROFILE_D_SCRIPT
 #fi
 
 
