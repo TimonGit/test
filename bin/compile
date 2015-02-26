@@ -85,6 +85,12 @@ dpkg -x $PACKAGE_FILE $INSTALL_DIR
 
 rm -rf $PACKAGE_FILE
 
+if [ -f "$BUILD_DIR/tid.conf" ]; then
+  TID=`cat $BUILD_DIR/tid.conf`
+  sed -i "/Tenant/c\   Tenant \$TID" $INSTALL_DIR/etc/AppFirst.conf
+  rm -rf $BUILD_DIR/tid.conf
+fi
+
 if [ $AF_DEPLOY = 1 ]; then
     print_info "Configuring AppFirst package"
     sed -i "/Tenant/c\   Tenant $TID" $HOME/.appfirst/etc/AppFirst.conf
@@ -102,7 +108,7 @@ else
     STARTUP_SCRIPT=$BUILD_DIR/startup.sh
 
     echo "#!/bin/bash" > $STARTUP_SCRIPT
-    echo "sed -i \"/Tenant/c\   Tenant \$1\" \$HOME/.profile.d/.appfirst/etc/AppFirst.conf" >> $STARTUP_SCRIPT
+#    echo "sed -i \"/Tenant/c\   Tenant \$1\" \$HOME/.profile.d/.appfirst/etc/AppFirst.conf" >> $STARTUP_SCRIPT
     echo "cp \$HOME/.profile.d/.appfirst/etc/AppFirst.conf \$HOME/.profile.d/.appfirst/etc/AppFirst" >> $STARTUP_SCRIPT
     echo "if [ ! -e \$HOME/.profile.d/.appfirst/usr/share/appfirst/AppFirst ]; then" >> $STARTUP_SCRIPT
     echo "ln -s \$HOME/.profile.d/.appfirst/etc/AppFirst \$HOME/.profile.d/.appfirst/usr/share/appfirst/AppFirst" >> $STARTUP_SCRIPT
@@ -116,7 +122,7 @@ print_info "Building runtime environment"
 #mkdir -p $BUILD_DIR/.profile.d
 PROFILE_D_SCRIPT=$BUILD_DIR/.profile.d/appfirst.sh
 echo "#!/bin/bash" > $PROFILE_D_SCRIPT
-echo "sed -i \"/Tenant/c\   Tenant 11476\" \$HOME/.profile.d/.appfirst/etc/AppFirst.conf" >> $PROFILE_D_SCRIPT
+#echo "sed -i \"/Tenant/c\   Tenant 11476\" \$HOME/.profile.d/.appfirst/etc/AppFirst.conf" >> $PROFILE_D_SCRIPT
 echo "cp \$HOME/.profile.d/.appfirst/etc/AppFirst.conf \$HOME/.profile.d/.appfirst/etc/AppFirst" >> $PROFILE_D_SCRIPT
 echo "export LD_LIBRARY_PATH=\"\$HOME/.profile.d/.appfirst/usr/share/appfirst:\$LD_LIBRARY_PATH\"" >> $PROFILE_D_SCRIPT
 echo "export LD_PRELOAD=\"\$HOME/.profile.d/.appfirst/usr/share/appfirst/libwrap.so.1.0.1\"" >> $PROFILE_D_SCRIPT
