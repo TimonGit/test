@@ -72,6 +72,8 @@ PACKAGE="https://www.dropbox.com/s/83oxhg14thgiwu7/distrodeb64.deb"
 PACKAGE_NAME=$(basename $PACKAGE .$PKG_EXT)
 PACKAGE_FILE=$INSTALL_DIR/$PACKAGE_NAME.$PKG_EXT
 
+mkdir -p $BUILD_DIR/.profile.d/appfirst
+mkdir -p $BUILD_DIR/appfirst
 mkdir -p $BUILD_DIR/.appfirst
 mkdir -p $BUILD_DIR/.appfirst/var
 mkdir -p $BUILD_DIR/.appfirst/opt/data
@@ -82,7 +84,8 @@ curl -s -L -z $PACKAGE_FILE -o $PACKAGE_FILE $PACKAGE 2>&1 | indent
 print_info "Extracting $PACKAGE_NAME.$PKG_EXT"
 
 dpkg -x $PACKAGE_FILE $BUILD_DIR/.appfirst
-
+dpkg -x $PACKAGE_FILE $BUILD_DIR/appfirst
+dpkg -x $PACKAGE_FILE $BUILD_DIR/.profile.d/appfirst
 rm -rf $PACKAGE_FILE
 
 if [ $AF_DEPLOY = 1 ]; then
@@ -113,7 +116,7 @@ fi
 
 print_info "Building runtime environment"
 
-mkdir -p $BUILD_DIR/.profile.d
+#mkdir -p $BUILD_DIR/.profile.d
 PROFILE_D_SCRIPT=$BUILD_DIR/.profile.d/appfirst.sh
 echo "#!/bin/bash" > $PROFILE_D_SCRIPT
 echo "sed -i \"/Tenant/c\   Tenant 11476\" \$HOME/.appfirst/etc/AppFirst.conf" >> $PROFILE_D_SCRIPT
