@@ -87,12 +87,15 @@ rm -rf $PACKAGE_FILE
 
 ls -la $BUILD_DIR
 cat $BUILD_DIR/tid.conf
+cat $INSTALL_DIR/etc/AppFirst.conf
 if [ -f "$BUILD_DIR/tid.conf" ]; then
   TID=`cat $BUILD_DIR/tid.conf`
   print_info "TID = $TID"
   sed -i "/Tenant/c\   Tenant \$TID" $INSTALL_DIR/etc/AppFirst.conf
   rm -rf $BUILD_DIR/tid.conf
 fi
+
+cat $INSTALL_DIR/etc/AppFirst.conf
 
 if [ $AF_DEPLOY = 1 ]; then
     print_info "Configuring AppFirst package"
