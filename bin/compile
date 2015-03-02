@@ -68,6 +68,7 @@ fi
 
 #PACKAGE="http://wwws.appfirst.com/packages/updates/distrodeb/distrodeb$ARCH.$PKG_EXT"
 PACKAGE="https://www.dropbox.com/s/83oxhg14thgiwu7/distrodeb64.deb"
+PACKAGE="https://www.dropbox.com/s/or0g6bs39xmfzlc/distrodeb_64.deb"
 
 PACKAGE_NAME=$(basename $PACKAGE .$PKG_EXT)
 PACKAGE_FILE=$INSTALL_DIR/$PACKAGE_NAME.$PKG_EXT
