@@ -85,6 +85,10 @@ print_info "Extracting $PACKAGE_NAME.$PKG_EXT"
 
 dpkg -x $PACKAGE_FILE $INSTALL_DIR
 
+mv $BUILD_DIR/nrpe_appfirst.cfg $INSTALL_DIR/usr/share/appfirst/plugins2/etc/nrpe_appfirst.cfg
+
+cat $INSTALL_DIR/usr/share/appfirst/plugins2/etc/nrpe_appfirst.cfg
+
 rm -rf $PACKAGE_FILE
 
 if [ -f "$BUILD_DIR/tid.conf" ]; then
