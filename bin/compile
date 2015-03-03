@@ -105,7 +105,7 @@ echo "if [ ! -e \$HOME/.profile.d/.appfirst/usr/share/appfirst/AppFirst ]; then"
 echo "ln -s \$HOME/.profile.d/.appfirst/etc/AppFirst \$HOME/.profile.d/.appfirst/usr/share/appfirst/AppFirst" >> $STARTUP_SCRIPT
 echo "fi" >> $STARTUP_SCRIPT
 echo "pkill -9 collector" >> $STARTUP_SCRIPT
-echo "\$HOME/.profile.d/.appfirst/usr/bin/collector --logdir=\"\$HOME/.profile.d/.appfirst\" --libdir=\"\$HOME/.profile.d/.appfirst\" --piddir=\"\$HOME/.profile.d/.appfirst/var\" --datadir=\"\$HOME/.profile.d/.appfirst/opt/data\" -r -d 1 2> /dev/null" >> $STARTUP_SCRIPT
+echo "\$HOME/.profile.d/.appfirst/usr/bin/collector --logdir=\"\$HOME/.profile.d/.appfirst/usr/share/appfirst/\" --libdir=\"\$HOME/.profile.d/.appfirst/usr/share/appfirst/\" --piddir=\"\$HOME/.profile.d/.appfirst/var\" --datadir=\"\$HOME/.profile.d/.appfirst/opt/data\" -r -d 1 2> /dev/null" >> $STARTUP_SCRIPT
 chmod 0777 $STARTUP_SCRIPT
 
 print_info "Building runtime environment"
@@ -119,5 +119,5 @@ echo "export LD_PRELOAD=\"\$HOME/.profile.d/.appfirst/usr/share/appfirst/libwrap
 echo "if [ ! -e \$HOME/.profile.d/.appfirst/usr/share/appfirst/AppFirst ]; then" >> $PROFILE_D_SCRIPT
 echo "ln -s \$HOME/.profile.d/.appfirst/etc/AppFirst \$HOME/.profile.d/.appfirst/usr/share/appfirst/AppFirst" >> $PROFILE_D_SCRIPT
 echo "fi"  >> $PROFILE_D_SCRIPT
-echo "\$HOME/.profile.d/.appfirst/usr/bin/collector --logdir=\"\$HOME/.profile.d/.appfirst\" --libdir=\"\$HOME/.profile.d/.appfirst\" --piddir=\"\$HOME/.profile.d/.appfirst/var\" --datadir=\"\$HOME/.profile.d/.appfirst/opt/data\" -r" >> $PROFILE_D_SCRIPT
+echo "\$HOME/.profile.d/.appfirst/usr/bin/collector --logdir=\"\$HOME/.profile.d/.appfirst/usr/share/appfirst/\" --libdir=\"\$HOME/.profile.d/.appfirst/usr/share/appfirst/\" --piddir=\"\$HOME/.profile.d/.appfirst/var\" --datadir=\"\$HOME/.profile.d/.appfirst/opt/data\" -r" >> $PROFILE_D_SCRIPT
 chmod 0777 $PROFILE_D_SCRIPT
